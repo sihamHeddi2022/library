@@ -3,6 +3,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
+import YourCard from './pages/YourCard'
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
              
              <Route path="/" element={<Home/>}/>
              <Route path="/shop" element={<Shop/>}/>
-
+             <Route path="/card" element={<YourCard/>}/>
 
         </Routes>
       
