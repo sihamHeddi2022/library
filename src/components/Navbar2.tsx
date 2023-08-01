@@ -18,8 +18,8 @@ function Navbar2() {
                 </div>
                 <div className=" gap-4 justify-end w-2/4 mr-5 hidden lg:flex">
                      <Link className='flex gap-1 items-center' to="/card"> <FaShopify/> Your Card</Link>      
-                     <Link  className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
-                     <Link  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md'>Register</Link>
+                     <Link  to={"/login"}   className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
+                     <Link  to={"/register"}  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md'>Register</Link>
                </div>
 
                <div className='	 py-3 px-4 md:hidden lg:hidden '>
@@ -34,10 +34,10 @@ function Navbar2() {
            
                 
     <div className="mb-2 flex flex-col items-center justify-between p-4 bg-white z-30 shadow shadow-slate-100	" style={open?{display:'flex'}:{display:'none'}}>
-                <Link to={"/"} className='hover:text-cyan-500'>
+                <Link to={"/login"} className='hover:text-cyan-500'>
                   Login
                 </Link>
-                <Link to={"/"} className='hover:text-cyan-500'>
+                <Link to={"/register"} className='hover:text-cyan-500'>
                   Register
                 </Link>
            

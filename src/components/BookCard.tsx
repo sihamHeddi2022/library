@@ -1,7 +1,8 @@
 
   
   
-  import image from "../assets/made-to-stick-1024x688 1.png";
+  import { Link } from "react-router-dom";
+import image from "../assets/made-to-stick-1024x688 1.png";
   
   
   export default function BookCard() {
@@ -16,9 +17,12 @@
         <p className="my-5">
             price - 45 $
         </p>
-        <p className="text-cyan-600 underline my-3">
+        <button className="text-slate-500 font-bold">
+          Add To Card
+        </button>
+        <Link className="text-cyan-600 underline my-3" to="/book/1" >
             view the book
-        </p>
+        </Link>
       </div>
     );
   }
