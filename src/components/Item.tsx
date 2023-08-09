@@ -16,7 +16,7 @@ function Item(props) {
             <div className='flex gap-1'>
                 <button className='rounded-full p-1 bg-slate-500 text-white' onClick={()=>dispatch(decrementQuantity({id,stock}))}>-</button>
                 <p>{quantity}</p>
-                <button className='rounded-full p-1 bg-slate-500 text-white' onClick={()=>dispatch(incrementQuantity({id}))}>+</button>
+                <button className='rounded-full p-1 bg-slate-500 text-white' onClick={()=>dispatch(incrementQuantity({id,stock}))}>+</button>
             </div>
             <p>
                 price : {price*quantity} $

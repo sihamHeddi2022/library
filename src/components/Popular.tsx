@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import BookCard from './BookCard'
 import { useQuery, gql } from "@apollo/client";
 
-const FILMS_QUERY = gql`
+const POPULAR_BOOKS_QUERY = gql`
   {
    
       popularBooks{
@@ -11,6 +11,7 @@ const FILMS_QUERY = gql`
        image
        id
        category
+       stock
        price
    
      }
@@ -18,7 +19,7 @@ const FILMS_QUERY = gql`
 `;
 function Popular() {
 
-  const { data, loading, error } = useQuery(FILMS_QUERY);
+  const { data, loading, error } = useQuery(POPULAR_BOOKS_QUERY);
   const [books, setbooks] = useState([])
    const [catgory, setcatgory] = useState("all")
    const init = ():any=>{

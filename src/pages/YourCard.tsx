@@ -27,7 +27,7 @@ function YourCard() {
             <>
             
             
-            {  card.map((c:any)=><Item {...c}/>)}
+            {  card.map((c:any)=><Item {...c} key={c.id}/>)}
               
             <div className='bg-slate-200 p-3'>
                 <h1>summary ({card.length} items ) </h1>
