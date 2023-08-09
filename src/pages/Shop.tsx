@@ -21,6 +21,7 @@ function Shop() {
         id
         image
         price
+        stock
       }
       pages
     }
@@ -109,7 +110,7 @@ function Shop() {
    return (
     <div>
         <Navbar2 title={title} settitle={settitle} handleBlur={handleBlur}/>
-        <h2 className='my-8 text-4xl mx-8 font-bold'>Search Result</h2>
+        <h2 className='mt-28 mb-12 text-4xl mx-8 font-bold'>Search Result</h2>
        <div className="flex  flex-col-reverse lg:flex-row md:flex-row">
             <div className='w-full lg:w-3/4 md:w-3/4'>
             <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 w-full '>

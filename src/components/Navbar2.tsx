@@ -4,6 +4,7 @@ import { Button, Input } from '@material-tailwind/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaBars, FaShopify } from "react-icons/fa";
 import { useQuery, gql } from "@apollo/client";
+import { useSelector } from 'react-redux';
 
 const FILMS_QUERY = gql`
   {
@@ -19,13 +20,14 @@ function Navbar2(props) {
     const openDrawer = () => setOpen(!open);
     
     const navigate = useNavigate()
-   
+    const card = useSelector((state:any) => state.card);
+
     
 
 
   return (
     <div >
-      <div className='navbar1 flex gap-8 items-center py-3 shadow shadow-gray-300 text-cyan-700 '>
+      <div className='navbar1 fixed w-full top-0 bg-white flex gap-8 items-center py-3 shadow shadow-gray-300 text-cyan-700 '>
       <div >
                   <img src={second} alt="logo" className='max-w-[80px] lg:max-w-[111px] md:max-w-[111px]' />
                 </div>
@@ -33,7 +35,7 @@ function Navbar2(props) {
                    <Input placeholder='search title of book ...' value={props.title} onChange={(e)=>props.settitle(e.target.value)} onBlur={props.handleBlur} className='py-2  rounded-full px-2 outline-none' onFocus={()=>navigate("/shop")}  />
                 </div>
                 <div className=" gap-4 justify-end w-2/4 mr-5 hidden lg:flex">
-                     <Link className='flex gap-1 items-center' to="/card"> <FaShopify/> Your Card</Link>      
+                     <Link className='flex gap-1 items-center' to="/card"> <FaShopify/> Your Card ({card.length})</Link>      
                      <Link  to={"/login"}   className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
                      <Link  to={"/register"}  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md'>Register</Link>
                </div>
@@ -49,7 +51,7 @@ function Navbar2(props) {
       </div>
            
                 
-    <div className="mb-2 flex flex-col items-center justify-between p-4 bg-white z-30 shadow shadow-slate-100	" style={open?{display:'flex'}:{display:'none'}}>
+    <div className="mb-2 fixed w-full top-20 flex flex-col items-center justify-between p-4 bg-white z-30 shadow shadow-slate-100	" style={open?{display:'flex'}:{display:'none'}}>
                 <Link to={"/login"} className='hover:text-cyan-500'>
                   Login
                 </Link>
@@ -58,7 +60,7 @@ function Navbar2(props) {
                 </Link>
            
                 <Link to={"/card"} className='hover:text-cyan-500'>
-                  Your card
+                  Your card ({card.length})
                 </Link>
          
      </div>

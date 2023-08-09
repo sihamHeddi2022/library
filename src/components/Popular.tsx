@@ -24,7 +24,7 @@ function Popular() {
    const init = ():any=>{
     const b = [] 
 
-    if(!loading && data) {
+    if(data) {
       for (const book of data.popularBooks) {
          b.push(book) 
          if (b.length==6) {
@@ -36,10 +36,10 @@ function Popular() {
    }
    
    useEffect(() => {
-     setTimeout(() => {
-      setbooks(init())  
-     }, 3000);
-   }, [])
+   
+      if(!loading) setbooks(init())  
+
+   }, [loading])
    
    useEffect(() => {
     let bs = []

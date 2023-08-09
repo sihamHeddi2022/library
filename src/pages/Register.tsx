@@ -7,7 +7,7 @@ function Register() {
        
     <Navbar2/>
    
-   <div className='flex justify-center'>
+   <div className='flex justify-center mt-24'>
         <div className='mx-3 w-full lg:w-1/2 md:w-1/2 lg:mx-0 md:mx-0'>
                <h1 className='text-center my-9 text-3xl font-bold'>
                    Register
