@@ -10,6 +10,10 @@ export const cardSlice = createSlice({
   name: 'card',
   initialState: getCard() || [],
     reducers: {
+            resetCard:(state)=>{
+                state = []
+                localStorage.setItem("card",JSON.stringify(state))
+            },
             addCard: (state:any, action) => {
 
              const {title,image,price,id,stock} = action.payload
@@ -75,7 +79,7 @@ export const cardSlice = createSlice({
 );
 
 // this is for dispatch
-export const { addCard,decrementQuantity,incrementQuantity,deleteItem } = cardSlice.actions;
+export const { addCard,decrementQuantity,incrementQuantity,deleteItem,resetCard } = cardSlice.actions;
 
 // this is for configureStore
 export default cardSlice.reducer;

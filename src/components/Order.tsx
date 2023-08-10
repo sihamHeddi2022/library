@@ -1,8 +1,30 @@
 import { useFormik } from 'formik';
 import React from 'react'
 import * as Yup from 'yup';
+import { gql, useMutation } from '@apollo/client';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetCard } from '../store/card';
 
+const CREATE_ORDER = gql`
+    mutation createOrder($email:String!,$first:String!,$last:String!,$country:String!,$street:String!,$city:String!,$state:String!,$zip:Int!,$o:[Order]){
+        createOrder(c:{
+          email:$email,
+          FirstName:$first,
+          LastName:$last,
+          Country:$country,
+          Street:$street,
+          City:$city,
+          State:$state,
+          ZIP:$zip
+        },o:{
+          orders:$o
+        })
+    }
+`;
 function Order() {
+  const [createOrder, { data, loading, error }] = useMutation(CREATE_ORDER);
+  const card = useSelector((state:any) => state.card);
+  const dispatch = useDispatch()
     const formik = useFormik({
         initialValues: {
             email :""  ,
@@ -34,10 +56,25 @@ function Order() {
             .required('Required')
           }),
         onSubmit: values => {
-          console.log(values);
-          
+           console.log(values);
+           
+          const orders = card.map(((c:any)=>({bookID:parseInt(c.id),quantity:parseInt(c.quantity)})))
+
+          createOrder({ variables: { email:values.email,first:values.FirstName,last:values.LastName,
+            country:values.Country,street:values.Street,
+            city:values.City,state:values.State,zip:values.ZIP,o:orders} });
+           
+     
+            setTimeout(() => {
+              dispatch(resetCard())
+              window.location.reload()
+            }, 3000);
+           
         },
       });
+    if(loading) return <><p>loading ...</p></>
+    if(error) return <><p>error occured in server ... </p></>
+    if (data?.createOrder) return <><p>{data.createOrder}</p></>
   return (
     <form onSubmit={formik.handleSubmit}>
             <div className="border-b border-gray-900/10 pb-12">

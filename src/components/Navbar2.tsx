@@ -3,17 +3,9 @@ import second from '../assets/logo.png'
 import { Button, Input } from '@material-tailwind/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaBars, FaShopify } from "react-icons/fa";
-import { useQuery, gql } from "@apollo/client";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../store/token';
 
-const FILMS_QUERY = gql`
-  {
-    launchesPast(limit: 10) {
-      id
-      mission_name
-    }
-  }
-`;
 
 function Navbar2(props) {
     const [open, setOpen] = React.useState(false);
@@ -21,8 +13,17 @@ function Navbar2(props) {
     
     const navigate = useNavigate()
     const card = useSelector((state:any) => state.card);
-
     
+    const dispatch = useDispatch()
+    
+    const token = useSelector((state:any) => state.token);
+    
+    const logMeout = ()=> {
+        dispatch(logout())
+        setTimeout(() => {
+          navigate("/login")
+        }, 2000);
+    }
 
 
   return (
@@ -36,9 +37,23 @@ function Navbar2(props) {
                 </div>
                 <div className=" gap-4 justify-end w-2/4 mr-5 hidden lg:flex">
                      <Link className='flex gap-1 items-center' to="/card"> <FaShopify/> Your Card ({card.length})</Link>      
-                     <Link  to={"/login"}   className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
+                    {
+                      token?<>
+                           <Link className='flex gap-1 items-center' to="/dashboard">dashboard</Link>
+                           <Link className='flex gap-1 items-center' to="/order">your order</Link>
+                           <button onClick={logMeout}   className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Log Out</button>
+
+
+                      
+                      </>:<>
+                      
+                      <Link  to={"/login"}   className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
                      <Link  to={"/register"}  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md'>Register</Link>
-               </div>
+            
+                      
+                      </>
+                    }
+            </div>
 
                <div className='	 py-3 px-4 md:hidden lg:hidden '>
                  

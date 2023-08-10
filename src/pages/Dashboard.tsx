@@ -7,7 +7,7 @@ function Dashboard() {
   return (
     <div>
         <Navbar2/>
-        <h1 className='my-8 font-bold text-3xl text-center'>
+        <h1 className='b-8 mt-28 font-bold text-3xl text-center'>
             Dashboard
         </h1>
         <Link to={"/add"} className='ml-5 font-bold text-xl'>

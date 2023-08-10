@@ -8,7 +8,7 @@ function YourOrders() {
     <div>
        <Navbar2/>
       
-       <h1 className='my-8 text-center text-xl font-bold'>
+       <h1 className='mb-8 mt-28 text-center text-xl font-bold'>
           Your Orders
        </h1>
        

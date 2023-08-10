@@ -1,7 +1,64 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar2 from '../components/Navbar2'
 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { gql, useMutation } from '@apollo/client';
+import { useDispatch } from 'react-redux';
+import { settoken } from '../store/token';
+import { useNavigate } from 'react-router-dom';
+const REGISTER = gql`
+mutation register($full:String!,$email:String!,$password:String!){
+    register(user:{
+      fullName:$full,
+      email:$email,
+      password:$password
+    }){
+      token
+    }
+  }
+`;
 function Register() {
+    const navigate = useNavigate()
+    const [register, { data, error }] = useMutation(REGISTER);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (data?.register?.token) {
+          dispatch(settoken({token:data?.register?.token}))
+          setTimeout(() => {
+            alert("you have succefully registered !! ")
+            navigate("/dashboard") 
+        }, 2000);
+        }
+    }, [data])
+    
+
+
+    const formik = useFormik({
+        initialValues: {
+            email :""  ,
+            fullName:"",
+            password:""
+        }, 
+        validationSchema: Yup.object({
+            fullName: Yup.string()
+              .max(20, 'Must be 20 characters or less')
+              .required('Required'),
+            email: Yup.string().email('Invalid email address').required('Required'),
+            password:Yup.string()  .min(5, 'Must be at least 5 carachters')
+            .required('Required'),
+          
+          }),
+        onSubmit: ({email,fullName,password}) => {
+          
+            register({variables:{
+               full:fullName,email:email,password:password
+             }})
+           
+        },
+      });
+
+
   return (
     <div>
        
@@ -12,30 +69,44 @@ function Register() {
                <h1 className='text-center my-9 text-3xl font-bold'>
                    Register
                </h1>
-               <div>
-                   <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Library Name</label>
-                   <div className="mt-2">
-                   <input id="name" name="name" type="text"className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                   </div>
-               </div>
+             {
+                error && <div className='text-red-600'>{error.message}</div>
+             } 
+              <form onSubmit={formik.handleSubmit} >
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Library Name</label>
+                        <div className="mt-2">
+                        <input id="name" name="fullName" value={formik.values.fullName} onChange={formik.handleChange}  type="text"className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                        {formik.touched.fullName && formik.errors.fullName ? (
+                                        <div className='text-red-500'>{formik.errors.fullName}</div>
+                        ) : null}
+                        </div>
+                    </div>
 
-               <div>
-                   <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                   <div className="mt-2">
-                   <input id="email" name="email" type="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                   </div>
-               </div>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                        <div className="mt-2">
+                        <input id="email" name="email" value={formik.values.email} onChange={formik.handleChange}  type="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                        {formik.touched.email && formik.errors.email ? (
+                                        <div className='text-red-500'>{formik.errors.email}</div>
+                        ) : null}
+                        </div>
+                    </div>
 
 
-               <div >
-                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">password</label>
-                   <div className="mt-2">
-                   <input id="password" name="password" type="password" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                   </div>
-               </div>
-               <button className='w-full  bg-slate-700 text-white p-1 my-4'>
-                   Submit
-               </button>
+                    <div >
+                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">password</label>
+                        <div className="mt-2">
+                        <input id="password" name="password" type="password" value={formik.values.password} onChange={formik.handleChange}   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                        {formik.touched.password && formik.errors.password ? (
+                                        <div className='text-red-500'>{formik.errors.password}</div>
+                        ) : null}
+                        </div>
+                    </div>
+                    <button className='w-full  bg-slate-700 text-white p-1 my-4'>
+                        Submit
+                    </button>
+              </form>
 
         </div>
 
