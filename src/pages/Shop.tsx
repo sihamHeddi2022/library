@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import   { useState,useEffect } from 'react'
 import Navbar2 from '../components/Navbar2'
 import BookCard from '../components/BookCard'
 import { gql, useLazyQuery } from '@apollo/client'

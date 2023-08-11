@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import  {useEffect} from 'react'
 import Navbar2 from '../components/Navbar2'
 import OrderItem from '../components/OrderItem';
 import { useSelector } from 'react-redux';

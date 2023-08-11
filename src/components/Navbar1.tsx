@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import second from '../assets/logo.png'
 import { Button, Drawer, IconButton, List, ListItem, ListItemPrefix, Typography } from '@material-tailwind/react'

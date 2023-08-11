@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react'
+import  {useRef, useState} from 'react'
 import Navbar2 from '../components/Navbar2'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

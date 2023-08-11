@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Item2(props:any) {
     const {title,image,price,id} = props

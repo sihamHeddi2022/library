@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import   { useEffect } from 'react'
 import Navbar2 from '../components/Navbar2'
 import Item2 from '../components/Item2'
 import { Link, useNavigate } from 'react-router-dom'

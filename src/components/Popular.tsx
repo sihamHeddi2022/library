@@ -1,5 +1,5 @@
 import { Button } from '@material-tailwind/react'
-import React, { useEffect, useState } from 'react'
+import   { useEffect, useState } from 'react'
 import BookCard from './BookCard'
 import { useQuery, gql } from "@apollo/client";
 

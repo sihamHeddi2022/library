@@ -1,4 +1,4 @@
-import React from 'react'
+ from 'react'
 import second from '../assets/logo.png'
 import { Button, Input } from '@material-tailwind/react'
 import { Link, useNavigate } from 'react-router-dom'

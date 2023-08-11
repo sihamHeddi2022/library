@@ -1,4 +1,4 @@
-import React from 'react'
+ 
 import Navbar1 from '../components/Navbar1'
 import Hero from '../components/Hero'
 import Popular from '../components/Popular'
