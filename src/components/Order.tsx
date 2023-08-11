@@ -56,7 +56,7 @@ function Order() {
             .required('Required')
           }),
         onSubmit: values => {
-           console.log(values);
+      
            
           const orders = card.map(((c:any)=>({bookID:parseInt(c.id),quantity:parseInt(c.quantity)})))
 

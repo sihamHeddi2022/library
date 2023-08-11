@@ -52,8 +52,7 @@ function Add() {
         .then((res)=>{
     
           const i = res.data.secure_url
-          console.log(i);
-          console.log(category);
+        
           
            addBook({
             variables:{

@@ -17,11 +17,11 @@ export const cardSlice = createSlice({
             addCard: (state:any, action) => {
 
              const {title,image,price,id,stock} = action.payload
-             console.log(stock);
+       
              
               if (stock>0) {
                 const book = state.findIndex((b:any)=>b.id==id) 
-                console.log(book);
+              
                 
                  if(book>=0) {
                       state[book].quantity ++;
@@ -46,7 +46,7 @@ export const cardSlice = createSlice({
         },
         incrementQuantity:(state:any,action)=>{
             const {id,stock} = action.payload
-            console.log("stock",stock);    
+         
 
             
             if(stock>0){

@@ -10,27 +10,28 @@ mutation updateStatusOrder($id:ID!,$status:Boolean!)
 
 function OrderItem(props:any) {
    
-  const [changeStatus,{data,error}] = useMutation(CHANGE_STATUS)
+  const [changeStatus] = useMutation(CHANGE_STATUS)
 
 
   const {title,image,price } = props.book
   const {id,status,quantity} = props
-  console.log(props.book,status);
   
   const [status1, setstatus1] = useState(status)
- 
   
+
   const handleChange = (e)=> {
+   
+    
       setstatus1(e.target.value)
-     changeStatus({
-      variables:{
-        id:id,
-        status:status1        
-      }
-     
-      
-     }).then(()=>  alert("the order was succefully changed the status"))
-     console.log(status1);
+      if (e.target.value) changeStatus({
+        variables:{
+          id:id,
+          status: JSON.parse(e.target.value)        
+        }
+       
+        
+       }).then(()=>  alert("the order was succefully changed the status"))
+  
   }
 
 

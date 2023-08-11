@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 function YourCard() {
   const card = useSelector((state:any) => state.card);
   const [show, setshow] = useState(false)
-  console.log(card);
+
   
   const getTotalPrice = ()=>{
      return card.reduce((total:any,element:any)=> total+element.price*element.quantity,0)

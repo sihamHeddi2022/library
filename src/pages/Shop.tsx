@@ -31,7 +31,7 @@ function Shop() {
  
    
    const[search,{error,loading,data}]=useLazyQuery(BOOKS_QUERY)
-   console.log(error);
+
    const pageNumbers = Array.from({ length: data?.books.pages }, (_, index) => index+1); 
 
     useEffect(() => {
