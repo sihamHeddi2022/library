@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar2 from '../components/Navbar2'
 import Item2 from '../components/Item2'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { gql, useQuery } from '@apollo/client'
+
+
+const   GET_USER_BOOKS = gql`query{
+  booksOfUser{
+    id
+    image
+    title
+    price
+  }
+}`
 
 function Dashboard() {
+   const {data,loading,error} = useQuery(GET_USER_BOOKS)
+   const token = useSelector((state:any)=>state.token)
+   const navigate = useNavigate()
+   
+      useEffect(() => {
+        if(!token)  navigate("/login")  
+      }, [])
+  
   return (
     <div>
         <Navbar2/>
@@ -14,10 +34,20 @@ function Dashboard() {
           + Add Book
         </Link>
         <hr />
-         <Item2/>
-         <Item2/>
-         <Item2/>
-         <Item2/>
+          {
+            error && <p className='text-red-400'>{error.message}</p>
+          }
+          {
+            loading && <p>loading ... </p>
+          }
+
+       {
+        data && data?.booksOfUser.length>0? data?.booksOfUser.map((book:any)=><Item2 {...book} key={book.id}/>)
+        : <p className='text-center text-xl my-10'>
+            you don't have any book yet 
+        </p> 
+      }
+     
     </div>
   )
 }

@@ -6,7 +6,10 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   uri: " http://localhost:3000/api/graphql",
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  headers:{
+    "authorization":"Bearer "+(localStorage.getItem("token") || null)
+  }
 });
 import { Provider } from 'react-redux';
 import store from './store';

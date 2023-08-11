@@ -4,7 +4,7 @@ import Navbar2 from '../components/Navbar2'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { gql, useMutation } from '@apollo/client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { settoken } from '../store/token';
 import { useNavigate } from 'react-router-dom';
 const LOGIN = gql`
@@ -18,15 +18,18 @@ mutation login($email:String!,$password:String!){
   }
 `;
 function Login() {
+  const token = useSelector((state:any)=>state.token)
+
     const navigate = useNavigate()
     const [login, { data, error }] = useMutation(LOGIN);
     const dispatch = useDispatch()
     useEffect(() => {
+      if(token)  navigate("/dashboard")  
         if (data?.login?.token) {
           dispatch(settoken({token:data?.login?.token}))
           setTimeout(() => {
             alert("you have succefully logined !! ")
-            navigate("/dashboard") 
+            window.location.reload()
         }, 2000);
         }
     }, [data])

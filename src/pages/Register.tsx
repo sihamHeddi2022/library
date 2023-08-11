@@ -4,7 +4,7 @@ import Navbar2 from '../components/Navbar2'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { gql, useMutation } from '@apollo/client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { settoken } from '../store/token';
 import { useNavigate } from 'react-router-dom';
 const REGISTER = gql`
@@ -19,15 +19,20 @@ mutation register($full:String!,$email:String!,$password:String!){
   }
 `;
 function Register() {
+  const token = useSelector((state:any)=>state.token)
+
     const navigate = useNavigate()
     const [register, { data, error }] = useMutation(REGISTER);
     const dispatch = useDispatch()
     useEffect(() => {
+      if(token)  navigate("/dashboard")  
+
         if (data?.register?.token) {
           dispatch(settoken({token:data?.register?.token}))
           setTimeout(() => {
             alert("you have succefully registered !! ")
-            navigate("/dashboard") 
+            window.location.reload()
+
         }, 2000);
         }
     }, [data])
