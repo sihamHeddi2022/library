@@ -1,4 +1,4 @@
- from 'react'
+ import {useState} from 'react'
 import second from '../assets/logo.png'
 import { Button, Input } from '@material-tailwind/react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { logout } from '../store/token';
 
 
 function Navbar2(props) {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const openDrawer = () => setOpen(!open);
     
     const navigate = useNavigate()
