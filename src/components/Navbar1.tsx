@@ -51,17 +51,17 @@ function Navbar1() {
         <div className="mb-2 flex flex-col items-center justify-between p-4 bg-white z-30 shadow shadow-slate-100	" style={open?{display:'flex'}:{display:'none'}}>
          
  
-          <Link to="/" className='hover:text-cyan-500'>
+          <Link className='hover:text-cyan-500'  to="/" >
                   Home
                 </Link>
-                <Link to="/" className='hover:text-cyan-500'>
+                <Link className='hover:text-cyan-500'  to="/" >
                   Popular Books
                 </Link>
                
-                <Link to="/shop" className='hover:text-cyan-500'>
+                <Link className='hover:text-cyan-500'  to="/shop" >
                   Shop Now
                 </Link>
-                <Link to="/" className='hover:text-cyan-500'>
+                <Link className='hover:text-cyan-500'  to="/" >
                   About Us 
                 </Link>
         </div>
