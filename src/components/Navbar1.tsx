@@ -30,8 +30,8 @@ function Navbar1() {
                   About Us 
                 </Link>
           <div className="flex gap-4 justify-end">
-          <Link  className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md '>Login</Link>
-           <Link  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md'>Register</Link>
+          <Link  className='bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2 text-lg rounded-md ' to={"/login"}>Login</Link>
+           <Link  className='bg-purple-700 hover:bg-purple-500 text-white px-6 py-2 text-lg  rounded-md' to={"/register"}>Register</Link>
           </div>
      </div>
      
