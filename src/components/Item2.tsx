@@ -1,6 +1,6 @@
 
 function Item2(props:any) {
-    const {title,image,price,id} = props
+    const {title,image,price} = props
   return (
     <div className='flex flex-col lg:flex-row md:flex-row my-5'>
     <img src={image} alt="" className='w-24 lg:w-2/12 md:w-2/12'/>

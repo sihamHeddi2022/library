@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import second from '../assets/logo.png'
-import { Button, Drawer, IconButton, List, ListItem, ListItemPrefix, Typography } from '@material-tailwind/react'
+import { Button } from '@material-tailwind/react'
 import { FaBars } from "react-icons/fa";
+import { useState } from 'react';
 
 function Navbar1() {
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(!open);
 
 
@@ -50,17 +51,17 @@ function Navbar1() {
         <div className="mb-2 flex flex-col items-center justify-between p-4 bg-white z-30 shadow shadow-slate-100	" style={open?{display:'flex'}:{display:'none'}}>
          
  
-          <Link to={"/"} className='hover:text-cyan-500'>
+          <Link to="/" className='hover:text-cyan-500'>
                   Home
                 </Link>
-                <Link to={"/"} className='hover:text-cyan-500'>
+                <Link to="/" className='hover:text-cyan-500'>
                   Popular Books
                 </Link>
                
-                <Link to={"/shop"} className='hover:text-cyan-500'>
+                <Link to="/shop" className='hover:text-cyan-500'>
                   Shop Now
                 </Link>
-                <Link to={"/"} className='hover:text-cyan-500'>
+                <Link to="/" className='hover:text-cyan-500'>
                   About Us 
                 </Link>
         </div>

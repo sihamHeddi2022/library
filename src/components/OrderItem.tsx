@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import  {useState,useEffect} from 'react'
+import  {useState} from 'react'
 
 const CHANGE_STATUS = gql `
 mutation updateStatusOrder($id:ID!,$status:Boolean!)

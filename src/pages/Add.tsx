@@ -1,4 +1,4 @@
-import  {useRef, useState} from 'react'
+import  { useState} from 'react'
 import Navbar2 from '../components/Navbar2'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -17,7 +17,7 @@ mutation addBook($title: String!, $author: String!, $description: String!, $pric
 `
 
 function Add() {
-   const [addBook,{error,data}]=useMutation(ADD_BOOK)
+   const [addBook,{error}]=useMutation(ADD_BOOK)
   const [image, setimage] = useState(null)
   const formik = useFormik({
     initialValues: {

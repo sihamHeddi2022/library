@@ -6,7 +6,7 @@ import Shop from './pages/Shop'
 import YourCard from './pages/YourCard'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import BookId from './pages/BookId'
+
 import Dashboard from './pages/Dashboard'
 import Add from './pages/Add'
 import YourOrders from './pages/YourOrders'
